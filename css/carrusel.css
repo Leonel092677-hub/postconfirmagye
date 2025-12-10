@@ -26,3 +26,40 @@
   border-radius: 6px;
   flex-shrink: 0;
 }
+
+/* ====== Carrusel responsivo ====== */
+.carousel-track img {
+  width: 200px;
+  height: auto;
+  border-radius: 6px;
+  margin: 5px;
+}
+
+@media (max-width: 992px) {
+  .carousel-track img {
+    width: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-track img {
+    width: 120px;
+  }
+  .btn-prev, .btn-next {
+    font-size: 1.5em;
+    padding: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-track img {
+    width: 100px;
+  }
+  .carousel-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .btn-prev, .btn-next {
+    margin: 10px 0;
+  }
+}
