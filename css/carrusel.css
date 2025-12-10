@@ -1,0 +1,28 @@
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 30px auto;
+  max-width: 1800px;
+  position: relative;
+}
+
+.carousel {
+  overflow: hidden;
+  width: 1800px; /* 5 imágenes de 350px + espacio */
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+  gap: 20px; /* espacio entre imágenes */
+}
+
+.carousel-track img {
+  width: 350px;
+  height: 350px;
+  object-fit: cover; /* recorta para mantener proporción */
+  border-radius: 6px;
+  flex-shrink: 0;
+}
