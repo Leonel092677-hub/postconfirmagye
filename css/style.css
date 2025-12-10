@@ -415,3 +415,20 @@ footer {
     max-width: 100%; /* ocupa todo el ancho en móvil */
   }
 }
+
+.footer-nav {
+  margin: 15px 0;
+  text-align: center;
+}
+
+.footer-nav a {
+  color: #ffd700;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+.footer-nav a:hover {
+  color: #ff3333;
+}
+
