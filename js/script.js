@@ -11,7 +11,7 @@ const totalImages = images.length;
 function getVisibleImages() {
   if (window.innerWidth >= 1200) return 10; // PC
   if (window.innerWidth >= 768) return 10;  // Tablet
-  return 4;                                // Móvil
+  return -1;                                // Móvil
 }
 
 // Función para mover el carrusel
@@ -41,6 +41,7 @@ setInterval(() => {
 // Recalcular cuando se cambia el tamaño de la ventana
 
 window.addEventListener('resize', () => moverCarrusel(index));
+
 
 
 
