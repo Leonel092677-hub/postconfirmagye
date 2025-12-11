@@ -4,19 +4,18 @@ const btnPrev = document.querySelector('.btn-prev');
 const btnNext = document.querySelector('.btn-next');
 
 let index = 0;
-const imageWidth = 350 + 20; // ancho + gap
-const totalImages = images.length;
 
-// Función para calcular cuántas imágenes mostrar según el ancho
+// Función para calcular cuántas imágenes caben en pantalla
 function getVisibleImages() {
-  if (window.innerWidth >= 1200) return 10; // PC
-  if (window.innerWidth >= 768) return 10;  // Tablet
-  return -1;                                // Móvil
+  const containerWidth = document.querySelector('.carousel').offsetWidth;
+  const imageWidth = images[0].offsetWidth + 20; // ancho + gap dinámico
+  return Math.max(1, Math.floor(containerWidth / imageWidth));
 }
 
 // Función para mover el carrusel
 function moverCarrusel(nuevaIndex) {
   const visibleImages = getVisibleImages();
+  const totalImages = images.length;
 
   if (nuevaIndex > totalImages - visibleImages) {
     index = 0; // vuelve al inicio
@@ -26,6 +25,7 @@ function moverCarrusel(nuevaIndex) {
     index = nuevaIndex;
   }
 
+  const imageWidth = images[0].offsetWidth + 20; // recalcular dinámico
   track.style.transform = `translateX(-${index * imageWidth}px)`;
 }
 
@@ -39,9 +39,4 @@ setInterval(() => {
 }, 3000);
 
 // Recalcular cuando se cambia el tamaño de la ventana
-
 window.addEventListener('resize', () => moverCarrusel(index));
-
-
-
-
