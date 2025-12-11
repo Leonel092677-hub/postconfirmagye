@@ -40,3 +40,10 @@ setInterval(() => {
 
 // Recalcular cuando se cambia el tamaño de la ventana
 window.addEventListener('resize', () => moverCarrusel(index));
+
+images.forEach(img => {
+  img.addEventListener('click', () => {
+    // Si ya está ampliada, la vuelve a su tamaño normal
+    img.classList.toggle('zoomed');
+  });
+});
