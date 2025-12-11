@@ -4,6 +4,7 @@ const btnPrev = document.querySelector('.btn-prev');
 const btnNext = document.querySelector('.btn-next');
 
 let index = 0;
+let autoSlide; // referencia al intervalo automático
 
 // Función para calcular cuántas imágenes caben en pantalla
 function getVisibleImages() {
@@ -33,17 +34,49 @@ function moverCarrusel(nuevaIndex) {
 btnNext.addEventListener('click', () => moverCarrusel(index + 1));
 btnPrev.addEventListener('click', () => moverCarrusel(index - 1));
 
-// Avance automático cada 3 segundos
-setInterval(() => {
-  moverCarrusel(index + 1);
-}, 3000);
+// Función para iniciar el auto-slide
+function startAutoSlide() {
+  autoSlide = setInterval(() => {
+    moverCarrusel(index + 1);
+  }, 3000);
+}
+
+// Función para detener el auto-slide
+function stopAutoSlide() {
+  clearInterval(autoSlide);
+}
+
+// Iniciar auto-slide al cargar
+startAutoSlide();
 
 // Recalcular cuando se cambia el tamaño de la ventana
 window.addEventListener('resize', () => moverCarrusel(index));
 
+// === Evento para ampliar imágenes al hacer click ===
 images.forEach(img => {
-  img.addEventListener('click', () => {
-    // Si ya está ampliada, la vuelve a su tamaño normal
-    img.classList.toggle('zoomed');
+  img.addEventListener('click', (e) => {
+    const isZoomed = img.classList.toggle('zoomed');
+
+    if (isZoomed) {
+      stopAutoSlide(); // detener carrusel
+      img.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center'
+      });
+
+      // Cerrar al hacer clic en cualquier parte del documento
+      document.addEventListener('click', closeZoom, { once: true });
+    }
+    e.stopPropagation(); // evita que el click en la imagen cierre inmediatamente
   });
 });
+
+// Función para cerrar zoom y reactivar carrusel
+function closeZoom() {
+  const zoomedImg = document.querySelector('.carousel-track img.zoomed');
+  if (zoomedImg) {
+    zoomedImg.classList.remove('zoomed');
+  }
+  startAutoSlide(); // reactivar carrusel
+}
