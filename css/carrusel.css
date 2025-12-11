@@ -66,12 +66,12 @@
 }
 
 .carousel-track img.zoomed {
-  max-width: 100px;     /* tamaño estándar ampliado */
-  max-height: 100px;    /* mantiene proporción */
-  object-fit: contain;  /* muestra toda la imagen completa */
-  transition: all 0.3s ease;
+  transform: scale(1.8);   /* agranda 80% más */
+  transition: transform 0.3s ease;
   z-index: 10;
+  object-fit: contain;
 }
+
 
 
 
