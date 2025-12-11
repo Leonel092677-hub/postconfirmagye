@@ -10,7 +10,8 @@
 
 .carousel {
   overflow: hidden;
-  width: 1800px; /* 5 imágenes de 350px + espacio */
+  width: 100%;        /* ocupa todo el ancho disponible */
+  max-width: 1800px;  /* límite en pantallas grandes */
 }
 
 .carousel-track {
@@ -22,17 +23,17 @@
 .carousel-track img {
   width: 350px;
   height: 350px;
-  object-fit: cover; /* recorta para mantener proporción */
+  object-fit: cover;
   border-radius: 6px;
   flex-shrink: 0;
 }
 
 /* ====== Carrusel responsivo ====== */
-.carousel-track img {
-  width: 200px;
-  height: auto;
-  border-radius: 6px;
-  margin: 5px;
+@media (max-width: 1200px) {
+  .carousel-track img {
+    width: 200px;
+    height: auto;
+  }
 }
 
 @media (max-width: 992px) {
@@ -63,4 +64,3 @@
     margin: 10px 0;
   }
 }
-
